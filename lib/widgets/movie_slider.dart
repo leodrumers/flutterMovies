@@ -43,7 +43,11 @@ class _MoviePoster extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'details'),
+            onTap: () => Navigator.pushNamed(
+              context,
+              'details',
+              arguments: 'movie-instance',
+            ),
             child: FadeInImage(
               placeholder: AssetImage('assets/images/no-image.jpg'),
               image: NetworkImage('https://via.placeholder.com/300x400'),
