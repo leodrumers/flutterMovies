@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -10,8 +8,9 @@ class MoviesProvider extends ChangeNotifier {
   String _apiKey = 'ab0f52993856c0065d1a7b7d831007b1';
   String _language = 'en-US';
 
+  List<Movie> onDisplayMovies = [];
+
   MoviesProvider() {
-    print('MoviesProvider intanciated');
     getOnDisplayMovies();
   }
 
@@ -21,6 +20,8 @@ class MoviesProvider extends ChangeNotifier {
 
     final response = await http.get(url);
     final playingResponse = PlayingResponse.fromJson(response.body);
-    print(playingResponse.movies[0].originalTitle);
+    onDisplayMovies = playingResponse.movies;
+
+    notifyListeners();
   }
 }
