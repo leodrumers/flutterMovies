@@ -1,6 +1,21 @@
 import 'dart:convert';
 
 class Movie {
+  bool adult;
+  String? backdropPath;
+  List<int> genreIds;
+  int id;
+  String originalLanguage;
+  String originalTitle;
+  String overview;
+  double popularity;
+  String? posterPath;
+  DateTime? releaseDate;
+  String title;
+  bool video;
+  double voteAverage;
+  int voteCount;
+
   Movie({
     required this.adult,
     this.backdropPath,
@@ -17,21 +32,6 @@ class Movie {
     required this.voteAverage,
     required this.voteCount,
   });
-
-  bool adult;
-  String? backdropPath;
-  List<int> genreIds;
-  int id;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String? posterPath;
-  DateTime? releaseDate;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
 
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
@@ -51,4 +51,12 @@ class Movie {
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
       );
+
+  get fullPosterPath {
+    if (posterPath != null) {
+      return 'https://image.tmdb.org/t/p/w500$posterPath';
+    }
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
 }
