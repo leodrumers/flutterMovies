@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movies/models/index.dart';
 
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({Key? key}) : super(key: key);
+  final List<Movie> popularMovies;
+  final String title;
+
+  const MovieSlider(
+      {Key? key, required this.popularMovies, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,18 +17,19 @@ class MovieSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Popurlar movies',
+              title,
               style: TextStyle(fontSize: 18),
             ),
           ),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 20,
-              itemBuilder: (_, index) => const _MoviePoster(),
+              itemCount: popularMovies.length,
+              itemBuilder: (_, index) =>
+                  _MoviePoster(movie: popularMovies[index]),
             ),
           ),
         ],
@@ -32,7 +39,9 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({Key? key}) : super(key: key);
+  final Movie movie;
+
+  const _MoviePoster({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +58,13 @@ class _MoviePoster extends StatelessWidget {
               arguments: 'movie-instance',
             ),
             child: FadeInImage(
-              placeholder: AssetImage('assets/images/no-image.jpg'),
-              image: NetworkImage('https://via.placeholder.com/300x400'),
+              placeholder: const AssetImage('assets/images/no-image.jpg'),
+              image: NetworkImage(movie.fullPosterPath),
             ),
           ),
           const SizedBox(height: 10),
           Text(
-            'Un titulo super hiper mega largo largo',
+            movie.originalTitle,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             textAlign: TextAlign.center,
