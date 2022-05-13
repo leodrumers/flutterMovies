@@ -3,25 +3,25 @@ import 'dart:convert';
 import 'movie.dart';
 
 class PlayingResponse {
+  String? dates;
+  int page;
+  List<Movie> movies;
+  int totalPages;
+  int totalResults;
+
   PlayingResponse({
-    required this.dates,
+    this.dates,
     required this.page,
     required this.movies,
     required this.totalPages,
     required this.totalResults,
   });
 
-  Dates dates;
-  int page;
-  List<Movie> movies;
-  int totalPages;
-  int totalResults;
-
   factory PlayingResponse.fromJson(String str) =>
       PlayingResponse.fromMap(json.decode(str));
 
   factory PlayingResponse.fromMap(Map<String, dynamic> json) => PlayingResponse(
-        dates: Dates.fromMap(json["dates"]),
+        dates: json["release_date"],
         page: json["page"],
         movies: List<Movie>.from(json["results"].map((x) => Movie.fromMap(x))),
         totalPages: json["total_pages"],
