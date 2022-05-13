@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:movies/providers/index.dart';
 import 'package:movies/widgets/index.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,13 +9,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final moviesProvider = Provider.of<MoviesProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Movies'),
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
-      body: Column(children: const [
-        CardSwiper(),
+      body: Column(children: [
+        CardSwiper(
+          movies: moviesProvider.onDisplayMovies,
+        ),
         MovieSlider(),
       ]),
     );
