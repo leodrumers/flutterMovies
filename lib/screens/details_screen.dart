@@ -15,15 +15,12 @@ class DeatailsScreen extends StatelessWidget {
         slivers: [
           MoviesAppBar(movie: movie),
           SliverList(
-              delegate: SliverChildListDelegate([
-            MoviePosterAndTitle(
-              movie: movie,
-            ),
-            MovieOverView(
-              movie: movie,
-            ),
-            MovieCastingCard(),
-          ])),
+            delegate: SliverChildListDelegate([
+              MoviePosterAndTitle(movie: movie),
+              MovieOverView(movie: movie),
+              MovieCastingCard(),
+            ]),
+          ),
         ],
       ),
     );
