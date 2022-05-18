@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movies/models/index.dart';
 
 class MoviesAppBar extends StatelessWidget {
-  const MoviesAppBar({Key? key}) : super(key: key);
+  final Movie movie;
+
+  const MoviesAppBar({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,20 +15,20 @@ class MoviesAppBar extends StatelessWidget {
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        titlePadding: EdgeInsets.all(0),
+        titlePadding: const EdgeInsets.all(0),
         title: Container(
-          padding: EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           width: double.infinity,
           alignment: Alignment.bottomCenter,
           color: Colors.black12,
           child: Text(
-            'movie.title',
-            style: TextStyle(fontSize: 20),
+            movie.title,
+            style: const TextStyle(fontSize: 20),
           ),
         ),
         background: FadeInImage(
-          placeholder: AssetImage('assets/images/loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/500x400'),
+          placeholder: const AssetImage('assets/images/loading.gif'),
+          image: NetworkImage(movie.fullBackdropPath),
           fit: BoxFit.cover,
         ),
       ),

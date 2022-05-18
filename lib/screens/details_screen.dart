@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:movies/models/index.dart';
 import 'package:movies/widgets/index.dart';
 
 class DeatailsScreen extends StatelessWidget {
@@ -6,17 +8,20 @@ class DeatailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String movie =
-        ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
+    final Movie movie = ModalRoute.of(context)?.settings.arguments as Movie;
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          MoviesAppBar(),
+          MoviesAppBar(movie: movie),
           SliverList(
               delegate: SliverChildListDelegate([
-            MoviePosterAndTitle(),
-            MovieOverView(),
+            MoviePosterAndTitle(
+              movie: movie,
+            ),
+            MovieOverView(
+              movie: movie,
+            ),
             MovieCastingCard(),
           ])),
         ],
