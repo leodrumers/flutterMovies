@@ -7,17 +7,17 @@ class MoviePosterAndTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(children: [
         ClipRRect(
           child: FadeInImage(
-            placeholder: AssetImage('assets/images/no-image.jpg'),
+            placeholder: const AssetImage('assets/images/no-image.jpg'),
             image: NetworkImage('https://via.placeholder.com/200x300'),
             height: 150,
           ),
         ),
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,7 +35,7 @@ class MoviePosterAndTitle extends StatelessWidget {
             ),
             Row(
               children: [
-                Icon(Icons.star_border_purple500_rounded),
+                const Icon(Icons.star_border_purple500_rounded),
                 Text('movie.voteAverage', style: textTheme.caption)
               ],
             ),

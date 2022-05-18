@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'providers/movies_provider.dart';
 import 'screens/index.dart';
 
-void main() => runApp(AppState());
+void main() => runApp(const AppState());
 
 class AppState extends StatelessWidget {
   const AppState({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class AppState extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
