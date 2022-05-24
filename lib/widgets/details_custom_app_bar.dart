@@ -9,7 +9,7 @@ class MoviesAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.blue,
       expandedHeight: 200,
       floating: false,
       pinned: true,

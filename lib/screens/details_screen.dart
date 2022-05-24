@@ -18,7 +18,19 @@ class DeatailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
               MoviePosterAndTitle(movie: movie),
               MovieOverView(movie: movie),
-              MovieCastingCard(),
+              MovieCastingCard(movieId: movie.id),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  'Crew List',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              MovieCastingCard(
+                movieId: movie.id,
+                showCrew: true,
+              ),
+              const SizedBox(height: 25),
             ]),
           ),
         ],

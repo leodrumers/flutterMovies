@@ -13,7 +13,8 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Movies'),
+        title: const Text('Movies Details'),
+        centerTitle: true,
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
       body: Column(children: [
@@ -22,7 +23,7 @@ class HomeScreen extends StatelessWidget {
         ),
         MovieSlider(
           popularMovies: moviesProvider.popularMovies,
-          title: 'Top 10',
+          title: 'Top movies',
           onNextPage: () => moviesProvider.getPopularMovies(),
         ),
       ]),

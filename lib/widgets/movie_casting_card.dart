@@ -35,7 +35,7 @@ class MovieCastingCard extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.only(bottom: 10),
           width: double.infinity,
-          height: showCrew ? 225 : 200,
+          height: showCrew ? 250 : 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: castList.length,
