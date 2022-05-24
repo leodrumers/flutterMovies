@@ -10,6 +10,10 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
+
+  Map<int, List<Cast>> moviesCast = {};
+  Map<int, List<Cast>> moviesCrew = {};
+
   int _currentPage = 1;
 
   MoviesProvider() {
@@ -42,6 +46,19 @@ class MoviesProvider extends ChangeNotifier {
       ...PlayingResponse.fromJson(data).movies
     ];
     notifyListeners();
+  }
+
+  Future<List<Cast>> getMovieCast(int movieId, bool showCrew) async {
+    if (moviesCast.containsKey(movieId)) {
+      return showCrew ? moviesCrew[movieId]! : moviesCast[movieId]!;
+    }
+
+    String data = await _getMoviesData('3/movie/$movieId/credits');
+    Credit casting = Credit.fromJson(data);
+    moviesCast[movieId] = casting.cast;
+    moviesCrew[movieId] = casting.crew;
+
+    return showCrew ? casting.crew : casting.cast;
   }
 
   Future<String> _getMoviesData(String path, [int page = 1]) async {
