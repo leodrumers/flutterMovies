@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/search/search_movies.dart';
 import 'package:provider/provider.dart';
 
 import 'package:movies/providers/index.dart';
@@ -15,7 +16,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Movies Details'),
         centerTitle: true,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+        actions: [
+          IconButton(
+              onPressed: () =>
+                  showSearch(context: context, delegate: SearchMovie()),
+              icon: const Icon(Icons.search))
+        ],
       ),
       body: Column(children: [
         CardSwiper(
