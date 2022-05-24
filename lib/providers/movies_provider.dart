@@ -35,6 +35,15 @@ class MoviesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  getCredits(int movieId) async {
+    String data = await _getMoviesData('3/movie/$movieId/credits');
+    popularMovies = [
+      ...popularMovies,
+      ...PlayingResponse.fromJson(data).movies
+    ];
+    notifyListeners();
+  }
+
   Future<String> _getMoviesData(String path, [int page = 1]) async {
     var ulr = Uri.https(_baseUrl, path,
         {'api_key': _apiKey, 'language': _language, 'page': '$page'});
