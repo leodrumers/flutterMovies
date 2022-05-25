@@ -54,8 +54,12 @@ class _MovieSliderState extends State<MovieSlider> {
               controller: _scrollController,
               scrollDirection: Axis.horizontal,
               itemCount: widget.popularMovies.length,
-              itemBuilder: (_, index) =>
-                  MoviePoster(movie: widget.popularMovies[index]),
+              itemBuilder: (_, index) {
+                var movie = widget.popularMovies[index];
+                var heroId = 'slider-${movie.id}-$index';
+                movie.heroId = heroId;
+                return MoviePoster(movie: movie);
+              },
             ),
           ),
         ],

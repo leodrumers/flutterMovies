@@ -9,17 +9,21 @@ class MovieSearchItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(movie.title),
-      subtitle: Text(movie.originalTitle),
-      trailing: Text(movie.voteAverage.toString()),
-      leading: FadeInImage(
-        image: NetworkImage(movie.fullPosterPath),
-        placeholder: const AssetImage('assets/images/no-image.jpg'),
-        width: 60,
-        fit: BoxFit.contain,
+    movie.heroId = 'search-${movie.id}';
+    return Hero(
+      tag: movie.heroId!,
+      child: ListTile(
+        title: Text(movie.title),
+        subtitle: Text(movie.originalTitle),
+        trailing: Text(movie.voteAverage.toString()),
+        leading: FadeInImage(
+          image: NetworkImage(movie.fullPosterPath),
+          placeholder: const AssetImage('assets/images/no-image.jpg'),
+          width: 60,
+          fit: BoxFit.contain,
+        ),
+        onTap: () => Navigator.pushNamed(context, 'details', arguments: movie),
       ),
-      onTap: () => Navigator.pushNamed(context, 'details', arguments: movie),
     );
   }
 }

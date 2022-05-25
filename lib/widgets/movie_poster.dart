@@ -5,7 +5,10 @@ import '../models/index.dart';
 class MoviePoster extends StatelessWidget {
   final Movie movie;
 
-  const MoviePoster({Key? key, required this.movie}) : super(key: key);
+  const MoviePoster({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +18,18 @@ class MoviePoster extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       child: Column(
         children: [
-          GestureDetector(
-            onTap: () => Navigator.pushNamed(
-              context,
-              'details',
-              arguments: movie,
-            ),
-            child: FadeInImage(
-              placeholder: const AssetImage('assets/images/no-image.jpg'),
-              image: NetworkImage(movie.fullPosterPath),
+          Hero(
+            tag: movie.heroId!,
+            child: GestureDetector(
+              onTap: () => Navigator.pushNamed(
+                context,
+                'details',
+                arguments: movie,
+              ),
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/images/no-image.jpg'),
+                image: NetworkImage(movie.fullPosterPath),
+              ),
             ),
           ),
           const SizedBox(height: 10),
