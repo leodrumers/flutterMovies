@@ -5,3 +5,4 @@ export './movie_overview.dart';
 export './movie_poster.dart';
 export './movie_poster_and_title.dart';
 export './movie_slider.dart';
+export './movie_search_item.dart';
